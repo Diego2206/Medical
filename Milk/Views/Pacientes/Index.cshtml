@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Milk.Models.Paciente>
+
+@{
+    ViewData["Title"] = "Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Registro de pacientes</h1> <br />
+@*Filtro de busqueda*@
+<form action="@Url.Action("Index","Pacientes")", method="get">
+    <div class="row">
+        <div class="col-md-4">
+            @Html.TextBox("nombre", null, new {placeholder = "Busqueda por nombres", @class = "form-control"})
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-success">Buscar</button>
+        </div>
+    </div>
+</form><br />
+<p class="text-right">
+    <a class="btn btn-success" asp-action="Create">Agregar nuevo</a>
+</p>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApPaterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApMaterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ocupación)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApPaterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApMaterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaNac)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sexo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ocupación)
+                </td>
+                <td class="text-center">
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
